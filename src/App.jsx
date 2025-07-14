@@ -5,7 +5,7 @@ import { ChatLayout } from "@components/chat-layout";
 import { ChatMessageList } from "@components/chat-message-list";
 import { ChatStartDiscussionModal } from "@components/chat-start-discussion-modal";
 import { useState } from "react";
-import { CONTACTS } from "./constants/contacts";
+import { CONTACTS } from "@constants/contacts";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
