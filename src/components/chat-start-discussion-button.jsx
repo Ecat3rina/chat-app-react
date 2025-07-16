@@ -1,3 +1,14 @@
-export function ChatStartDiscussionButton(){
-    return <div>ChatStartDiscussionButton</div>
+export function ChatStartDiscussionButton({
+  addNewDiscussion,
+  setIsModalVisible,
+}) {
+  return (
+    <button
+      onClick={() => {
+        addNewDiscussion(), setIsModalVisible(false);
+      }}
+    >
+      Start discussion
+    </button>
+  );
 }
