@@ -17,3 +17,16 @@ export async function fetchMessages() {
   const res = await fetch(`${API_BASE}/${endpoint}`);
   return await res.json();
 }
+
+export async function postDiscussion(payload) {
+  const endpoint = 'discussions'
+  const data = await fetch(`${API_BASE}/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+
+  const newDiscussion = await data.json()
+
+  return newDiscussion
+}

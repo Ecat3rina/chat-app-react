@@ -1,7 +1,7 @@
-export function ChatStartDiscussionButton({
-  addNewDiscussion,
-  setIsModalVisible,
-}) {
+import { useChatContext } from "@hooks/use-chat-context";
+
+export function ChatStartDiscussionButton() {
+  const { addNewDiscussion, setIsModalVisible } = useChatContext();
   return (
     <button
       onClick={() => {

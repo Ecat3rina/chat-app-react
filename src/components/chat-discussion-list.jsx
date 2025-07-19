@@ -1,11 +1,11 @@
+import { useChatContext } from "@hooks/use-chat-context";
 import { ChatDiscussionContacts } from "./chat-discussion-contacts";
 import { clsx } from "clsx";
 
-export function ChatDiscussionList({
-  discussions,
-  loadMessages,
-  highlightDiscussion,
-}) {
+export function ChatDiscussionList() {
+  const { discussions, loadMessages, highlightDiscussion, contacts } =
+    useChatContext();
+
   return (
     <div className="chat-discussion-list">
       <h3>My discussions</h3>

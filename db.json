@@ -1,33 +1,74 @@
 {
   "contacts": [
-    { "id": 1, "name": "John Doe" },
-    { "id": 2, "name": "Jane Smith" },
-    { "id": 3, "name": "Robert Johnson" },
-    { "id": 4, "name": "Michael Brown" },
-    { "id": 5, "name": "Emily Davis" },
-    { "id": 6, "name": "Sarah Miller" }
+    {
+      "id": "1",
+      "name": "John Doe"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith"
+    },
+    {
+      "id": "3",
+      "name": "Robert Johnson"
+    },
+    {
+      "id": "4",
+      "name": "Michael Brown"
+    },
+    {
+      "id": "5",
+      "name": "Emily Davis"
+    },
+    {
+      "id": "6",
+      "name": "Sarah Miller"
+    }
   ],
-
   "discussions": [
     {
-      "id": 0,
+      "id": "0",
       "contacts": [
-        { "id": 0, "name": "John Doe" },
-        { "id": 5, "name": "Emily Davis" }
+        {
+          "id": 0,
+          "name": "John Doe"
+        },
+        {
+          "id": 5,
+          "name": "Emily Davis"
+        }
       ]
     },
     {
-      "id": 1,
+      "id": "1",
       "contacts": [
-        { "id": 0, "name": "Emily Davis" },
-        { "id": 5, "name": "Sarah Miller" }
+        {
+          "id": 0,
+          "name": "Emily Davis"
+        },
+        {
+          "id": 5,
+          "name": "Sarah Miller"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "contacts": [
+        {
+          "id": 5,
+          "name": "Elena Ivanova"
+        },
+        {
+          "id": "2",
+          "name": "Jane Smith"
+        }
       ]
     }
   ],
-
   "messages": [
     {
-      "id": 0,
+      "id": "0",
       "discussionId": 0,
       "messages": [
         {
@@ -45,7 +86,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": "1",
       "discussionId": 1,
       "messages": [
         {

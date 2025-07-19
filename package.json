@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "db":"npx json-server db.json",
+    "db": "npx json-server db.json",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
