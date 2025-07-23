@@ -1,18 +1,42 @@
 import { clsx } from "clsx";
-import { useChatContext } from "@hooks/use-chat-context";
+import { useAtom } from "jotai";
+import { isModalVisibleAtom, userAtom } from "../store/store";
 
 export function ChatControls() {
-  const { isModalVisible, setIsModalVisible, user } = useChatContext();
+  const [user] = useAtom(userAtom);
+  const [isModalVisible, setIsModalVisible] = useAtom(isModalVisibleAtom);
+
   return (
     <div className="chat-controls">
       <button
-        className={clsx("chat-controls-btn", isModalVisible && "is-active")}
-        onClick={() => setIsModalVisible((prev) => !prev)}
+        className={clsx("chat-controls-btn", !isModalVisible && "is-active")}
+        onClick={() => {
+          setIsModalVisible(false);
+        }}
       >
-        Show modal
+        Hide contact list
       </button>
+
+      <button
+        className={clsx("chat-controls-btn", isModalVisible && "is-active")}
+        onClick={() => {
+          setIsModalVisible(true);
+        }}
+      >
+        Show contact list
+      </button>
+
+      <button
+        className="chat-controls-btn"
+        onClick={() => {
+          setIsModalVisible((prev) => !prev);
+        }}
+      >
+        Toggle contact list
+      </button>
+
       <p>
-        <strong>Current user:{user.name}</strong>
+        Current user: <strong>{user.name}</strong>
       </p>
     </div>
   );

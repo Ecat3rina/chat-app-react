@@ -1,11 +1,38 @@
-import { useChatContext } from "@hooks/use-chat-context";
+import { postDiscussion } from "../lib/api";
+import { useSWRConfig } from "swr";
+import { useAtom } from "jotai";
+import {
+  userAtom,
+  activeContactAtom,
+  isModalVisibleAtom,
+} from "../store/store";
 
 export function ChatStartDiscussionButton() {
-  const { addNewDiscussion, setIsModalVisible } = useChatContext();
+  const [activeContact] = useAtom(activeContactAtom);
+  const [user] = useAtom(userAtom);
+  const [isModalVisible, setIsModalVisible] = useAtom(isModalVisibleAtom);
+
+  const { mutate } = useSWRConfig();
+  async function startNewDiscussion() {
+    const payload = {
+      contacts: [
+        { id: activeContact, name: activeContact.name },
+        { id: user.id, name: user.name },
+      ],
+    };
+
+    const { error } = await postDiscussion(payload);
+    if (error) {
+    }
+
+    mutate("discussions");
+    setIsModalVisible(false);
+  }
+
   return (
     <button
       onClick={() => {
-        addNewDiscussion(), setIsModalVisible(false);
+        startNewDiscussion();
       }}
     >
       Start discussion

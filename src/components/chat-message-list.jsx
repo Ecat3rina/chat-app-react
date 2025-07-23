@@ -1,8 +1,16 @@
-import { useChatContext } from "@hooks/use-chat-context";
+import { fetchMessages } from "../lib/api";
 import { ChatMessage } from "./chat-message";
+import useSWR from "swr";
+import { useAtom } from "jotai";
+import { activeDiscussionAtom } from "../store/store";
 
 export function ChatMessageList() {
-  const { messages } = useChatContext();
+  const [activeDiscussion] = useAtom(activeDiscussionAtom);
+  const { data: messages } = useSWR(
+    () => `messages ${activeDiscussion?.id}`,
+    () => fetchMessages(activeDiscussion.id),
+    { dedupingInterval: 10000 }
+  );
 
   return (
     <div>

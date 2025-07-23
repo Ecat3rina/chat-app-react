@@ -51,19 +51,6 @@
           "name": "Sarah Miller"
         }
       ]
-    },
-    {
-      "id": 3,
-      "contacts": [
-        {
-          "id": 5,
-          "name": "Elena Ivanova"
-        },
-        {
-          "id": "2",
-          "name": "Jane Smith"
-        }
-      ]
     }
   ],
   "messages": [
