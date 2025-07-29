@@ -1,4 +1,5 @@
 export const USER = {
   id: "5",
   name: "Emily Davis",
+  imgUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d'",
 };

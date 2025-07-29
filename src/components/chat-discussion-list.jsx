@@ -1,36 +1,43 @@
+import { AiFillDelete } from "react-icons/ai";
 import { clsx } from "clsx";
-import useSWR, { useSWRConfig } from "swr";
 import { useAtom } from "jotai";
+import useSWR, { mutate } from "swr";
+
 import { activeDiscussionAtom } from "../store/store";
 import { deleteDiscussion, fetchDiscussions } from "../lib/api";
 import { ChatDiscussionContacts } from "./chat-discussion-contacts";
-import { AiFillDelete } from "react-icons/ai";
 
 export function ChatDiscussionList() {
-  const { mutate } = useSWRConfig();
   const [activeDiscussion, setActiveDiscussion] = useAtom(activeDiscussionAtom);
+
   const { data: discussions } = useSWR("discussions", fetchDiscussions);
 
-  async function handleDeleteDiscussion(discussionId) {
-    const { error } = await deleteDiscussion(discussionId);
+  async function handleDeleteDiscussion(id) {
+    const { error } = await deleteDiscussion(id);
+
     if (error) {
+      // Poti arata o alerta daca stergerea nu a mers cum trebuie
+      // Dupa dau return ca sa nu se faca mutate inutil
       return;
     }
+
     mutate("discussions");
   }
 
   return (
-    <div className="chat-discussion-list">
-      <h3>My discussions</h3>
+    <div className="">
+      <h3 className="text-g text-xl">My discussions</h3>
 
-      <ul className="chat-discussion-list-items">
+      <ul className="">
         {discussions?.map((discussion) => (
-          <li key={discussion.id} className="chat-discussion-list-item">
+          <li
+            key={discussion.id}
+            className="mt-3 flex items-stretch justify-between rounded-md border-1"
+          >
             <button
               className={clsx(
-                "chat-discussion-list-button",
-                discussion.id === activeDiscussion?.id &&
-                  "chat-discussion-list-item--active"
+                "flex grow p-2 hover:bg-gray-100",
+                discussion.id === activeDiscussion?.id && "bg-blue-200",
               )}
               onClick={() => {
                 setActiveDiscussion(discussion);
@@ -38,8 +45,9 @@ export function ChatDiscussionList() {
             >
               <ChatDiscussionContacts contacts={discussion.contacts} />
             </button>
+
             <button
-              className="chat-discussion-list-delete"
+              className="px-4 hover:bg-red-100"
               onClick={() => handleDeleteDiscussion(discussion.id)}
             >
               <AiFillDelete />

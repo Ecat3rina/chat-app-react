@@ -1,16 +1,12 @@
 import { postDiscussion } from "../lib/api";
 import { useSWRConfig } from "swr";
 import { useAtom } from "jotai";
-import {
-  userAtom,
-  activeContactAtom,
-  isModalVisibleAtom,
-} from "../store/store";
+import { userAtom, activeContactAtom } from "../store/store";
+import { Button } from "@nextui-org/react";
 
-export function ChatStartDiscussionButton() {
+export function ChatStartDiscussionButton({ onCloseModal }) {
   const [activeContact] = useAtom(activeContactAtom);
   const [user] = useAtom(userAtom);
-  const [isModalVisible, setIsModalVisible] = useAtom(isModalVisibleAtom);
 
   const { mutate } = useSWRConfig();
   async function startNewDiscussion() {
@@ -26,16 +22,17 @@ export function ChatStartDiscussionButton() {
     }
 
     mutate("discussions");
-    setIsModalVisible(false);
+    onCloseModal();
   }
 
   return (
-    <button
-      onClick={() => {
+    <Button
+      color="primary"
+      onPress={() => {
         startNewDiscussion();
       }}
     >
       Start discussion
-    </button>
+    </Button>
   );
 }
